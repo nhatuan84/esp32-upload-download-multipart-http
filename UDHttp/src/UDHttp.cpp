@@ -205,12 +205,22 @@ int UDHttp::download(char *downloadUrl, DataCb dataCb, ProgressCb progressCb){
     } while (tmp == NULL);
     //parse header
     data = tmp;
+    tmp = strstr(buf, "200");
+    if(tmp == NULL)
+    {
+        return -1;
+    }
     tmp = strstr(buf, "Content-Length: ");
+    if(tmp == NULL)
+    {
+        return -1;
+    }
     char *tmp2 = strstr(tmp, "\r\n");
     memset(num, 0, 10);
     int clen = strlen("Content-Length: ");
     memcpy(num, tmp+clen, tmp2-tmp-clen);
     total = atoi(num);
+    Serial.printf("%s", buf);
     //start downloading
     if(received > (data+len+1-buf)){
 		dataCb((uint8_t *)(data+len), received - (data+len-buf));
