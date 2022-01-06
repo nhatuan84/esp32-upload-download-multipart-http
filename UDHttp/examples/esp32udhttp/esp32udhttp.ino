@@ -53,20 +53,30 @@ void setup() {
     return;
   }
   Serial.println("initialization done.");
-  SD.remove("test.pdf");
-  {
+  SD.remove("test.mp3");
+  while(1){
     UDHttp udh;
     //open file on sdcard to write
-    root = SD.open("test.pdf", FILE_WRITE);
+    root = SD.open("test.mp3", FILE_WRITE);
     if (!root) {
        Serial.println("can not open file!");
        return;
     }
     //download the file from url
-    udh.download("http://www.smart-words.org/linking-words/linking-words.pdf", wdataf, progressf);
+    int r = udh.download("http://192.168.1.3/audio.mp3", wdataf, progressf);
+    if(r == -1)
+    {
+      Serial.println("error");
+    }
+    else
+    {
+      break;
+    }
     root.close();
-    Serial.printf("done downloading\n");
+    Serial.printf("try downloading again\n");
+    delay(1000);
   }
+  Serial.printf("done downloading\n");
   {
     UDHttp udh;
     //open file on sdcard to read
