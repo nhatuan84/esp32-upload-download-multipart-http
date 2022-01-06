@@ -53,8 +53,9 @@ void setup() {
     return;
   }
   Serial.println("initialization done.");
-  SD.remove("test.mp3");
+  
   while(1){
+    SD.remove("test.mp3");
     UDHttp udh;
     //open file on sdcard to write
     root = SD.open("test.mp3", FILE_WRITE);
@@ -70,6 +71,7 @@ void setup() {
     }
     else
     {
+      root.close();
       break;
     }
     root.close();
