@@ -24,7 +24,7 @@ class UDHttp
         UDHttp();
         ~UDHttp();
         int upload(char *uploadUrlHandler, char *fileName, int sizeOfFile, DataCb dataCb, ProgressCb progressCb, DataCb responseCb);
-        int download(char *downloadUrl, DataCb dataCb, ProgressCb progressCb);
+        int download(char *downloadUrl, char *downloadFile, DataCb dataCb, ProgressCb progressCb);
 };
 
 #endif
