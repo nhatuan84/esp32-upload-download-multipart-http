@@ -17,8 +17,8 @@ typedef void (*ProgressCb)(int percent);
 
 class UDHttp
 {
-	private:
-		void sendChunk(Client *client, uint8_t *buf, int len);
+    private:
+	void sendChunk(Client *client, uint8_t *buf, int len);
         int simpleUrlParser(char *url, char *host, int &port);
     public: 
         UDHttp();
