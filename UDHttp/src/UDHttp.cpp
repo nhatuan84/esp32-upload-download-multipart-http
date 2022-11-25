@@ -157,7 +157,7 @@ int UDHttp::upload(char *uploadUrlHandler, char *fileName, int sizeOfFile, DataC
 	return 0;
 }
 
-int UDHttp::download(char *downloadUrl, DataCb dataCb, ProgressCb progressCb){
+int UDHttp::download(char *downloadUrl, char *downloadFile, DataCb dataCb, ProgressCb progressCb){
     char buf[HEADER_SIZE];
     char host[HOST_LEN];
 	int port = 80;
@@ -179,7 +179,7 @@ int UDHttp::download(char *downloadUrl, DataCb dataCb, ProgressCb progressCb){
 		return -1;
 	}
     memset(buf, 0, HEADER_SIZE);
-	snprintf(buf, HEADER_SIZE, GETR, downloadUrl, host, port);
+	snprintf(buf, HEADER_SIZE, GETR, downloadFile, host, port);
     //parse url
     memset(host, 0, HOST_LEN);
     if(simpleUrlParser(downloadUrl, host, port) == -1){
