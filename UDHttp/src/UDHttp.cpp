@@ -221,10 +221,15 @@ int UDHttp::download(char *downloadUrl, char *downloadFile, DataCb dataCb, Progr
     memcpy(num, tmp+clen, tmp2-tmp-clen);
     total = atoi(num);
     //start downloading
+    clen = total;
     if(received > (data+len+1-buf)){
 		dataCb((uint8_t *)(data+len), received - (data+len-buf));
 		total = total - (received - (data+len-buf));
+        if(progressCb != NULL){
+            progressCb(100*(received - (data+len-buf))/clen);
+        }
 	}
+    if(total == 0) return 0;
     clen = total;
     received = 0;
 	do {
