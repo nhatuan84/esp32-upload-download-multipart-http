@@ -220,7 +220,6 @@ int UDHttp::download(char *downloadUrl, char *downloadFile, DataCb dataCb, Progr
     int clen = strlen("Content-Length: ");
     memcpy(num, tmp+clen, tmp2-tmp-clen);
     total = atoi(num);
-    Serial.printf("%s", buf);
     //start downloading
     if(received > (data+len+1-buf)){
 		dataCb((uint8_t *)(data+len), received - (data+len-buf));
