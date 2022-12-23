@@ -91,7 +91,7 @@ int UDHttp::upload(char *uploadUrlHandler, char *fileName, int sizeOfFile, DataC
     }
     //gen key from file name using b64
     //String key = base64::encode(String(fileName)); //it make app crash -> fix later
-    char *key = "aHR0cDovL3d3dy5pb3RzaGFyaW5nLmNvbQ==";
+    const char *key = "aHR0cDovL3d3dy5pb3RzaGFyaW5nLmNvbQ==";
     //very simple url parser
 
     if((strlen(OPEN) + strlen(key) + strlen(fileName)) > HEADER_SIZE){
