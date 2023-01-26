@@ -102,13 +102,13 @@ int UDHttp::upload(char *uploadUrlHandler, char *fileName, int sizeOfFile, DataC
         printf("Increase HEADER_SIZE\n");
         return -1;
     }
-    if((strlen(HEADER) + strlen(host) + strlen(key) + 20) > HEADER_SIZE){
-        printf("Increase HEADER_SIZE\n");
-        return -1;
-    }
     memset(host, 0, HOST_LEN);
     if(simpleUrlParser(uploadUrlHandler, host, port) == -1){
         printf("url is wrong\n");
+        return -1;
+    }
+    if((strlen(HEADER) + strlen(host) + strlen(key) + 20) > HEADER_SIZE){
+        printf("Increase HEADER_SIZE\n");
         return -1;
     }
     //calculate open
